@@ -19,10 +19,15 @@ namespace ProductData
             : base("name=ProductEntity")
         {
         }
-    
+
+        public ProductEntity(string NameOrConnection)
+            : base(NameOrConnection)
+        {
+
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            
         }
     
         public virtual DbSet<Product> Products { get; set; }

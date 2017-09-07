@@ -13,11 +13,11 @@ namespace ProductDAL.UnitOfWork
 
         private IRepository<ProductOption, Guid> _ProductOptions;
         private DbContext _Context;
-        public ProductUnitOfWork(ProductEntity context)
+        public ProductUnitOfWork(string NameOrConnection)
         {
-            this._Context = context;
-            this._Products = new Repository<Product, Guid>(context);
-            this._ProductOptions = new Repository<ProductOption, Guid>(context);
+            this._Context = new ProductEntity(NameOrConnection);
+            this._Products = new Repository<Product, Guid>(this._Context);
+            this._ProductOptions = new Repository<ProductOption, Guid>(this._Context);
         }
 
         public IRepository<Product, Guid> Products => this._Products;

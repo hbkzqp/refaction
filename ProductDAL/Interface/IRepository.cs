@@ -16,6 +16,7 @@ namespace ProductDAL.Repository
         void AddRange(IEnumerable<T> entities);
 
         void Remove(T entity);
+        void RemoveByKey(V key);
         void RemoveRange(IEnumerable<T> entities);
 
 

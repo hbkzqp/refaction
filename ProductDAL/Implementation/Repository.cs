@@ -53,6 +53,10 @@ namespace ProductDAL.Repository
             _Context.Set<T>().RemoveRange(entities);
         }
 
-        
+        public void RemoveByKey(V key)
+        {
+            T entity = this.Get(key);
+            _Context.Set<T>().Remove(entity);
+        }
     }
 }
