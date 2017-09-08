@@ -44,8 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstraction\Interface\Mappers\IModelMappper.cs" />
-    <Compile Include="Abstraction\Interface\Mappers\IProductModelMapper.cs" />
-    <Compile Include="Implementation\ModelMappper.cs" />
+    <Compile Include="Abstraction\Interface\Mappers\IEntityModelMapper.cs" />
+    <Compile Include="Implementation\Mappers\EntityModelMapper.cs" />
+    <Compile Include="Implementation\Mappers\ModelMappper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

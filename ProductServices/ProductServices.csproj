@@ -49,9 +49,8 @@
     <Compile Include="Abstraction\Service.cs" />
     <Compile Include="Implementation\ProductOptionService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
-    <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\ProductOption.cs" />
+    <Compile Include="Models\ProductOptionModel.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProductCore\ProductCore.csproj">
+      <Project>{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}</Project>
+      <Name>ProductCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProductDAL\ProductDAL.csproj">
       <Project>{856296F1-5741-47D3-847B-EE1FFF61C01D}</Project>
       <Name>ProductDAL</Name>

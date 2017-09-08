@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "refactor-me", "refactor-me\refactor-me.csproj", "{20AB69F9-F2D3-4A68-96C3-424EC8B9406E}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDAL", "ProductDAL\Pr
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{9D91F612-69BB-426E-917D-1033ADF7C1DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCore", "ProductCore\ProductCore.csproj", "{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
