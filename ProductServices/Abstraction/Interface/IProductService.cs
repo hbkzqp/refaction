@@ -1,4 +1,5 @@
 ﻿using ProductData;
+using ProductServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace ProductServices.Interface
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAllProduct();
-        Product FindProductByName(string name);
-        Product FindProductByID(Guid ID);
-        void AddProduct(Product product);
-        void UpdateProduct(Guid productID, Product product);
+        IEnumerable<ProductModel> GetAllProduct();
+        ProductModel FindProductByName(string name);
+        ProductModel FindProductByID(Guid ID);
+        void AddProduct(ProductModel product);
+        void UpdateProduct(Guid productID, ProductModel product);
         void DeleteProuct(Guid ID);
     }
 }

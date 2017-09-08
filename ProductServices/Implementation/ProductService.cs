@@ -6,6 +6,7 @@ using System.Linq;
 using ProductData;
 using ProductServices.Models;
 using ProductCore.Abstraction.Interface.Mappers;
+using ProductCore.Implementation.Mappers;
 
 namespace ProductServices.Implementation
 {
@@ -16,13 +17,15 @@ namespace ProductServices.Implementation
 
         }
 
-        private IModelMappper<Product,ProductModel> _mapper;
+        private IEntityModelMapper<Product, ProductModel> _mapper = new EntityModelMapper<Product, ProductModel>();
 
 
-        public void AddProduct(Product product)
+
+
+        public void AddProduct(ProductModel product)
         {
-            
-            this._ProductUnitOfWork.Products.Add(product);
+            var productEntity = _mapper.MapFromModelToEntity(product);
+            this._ProductUnitOfWork.Products.Add(productEntity);
             this._ProductUnitOfWork.Commit();
         }
 
@@ -31,26 +34,33 @@ namespace ProductServices.Implementation
             this._ProductUnitOfWork.Products.RemoveByKey(ID);
         }
 
-        public Product FindProductByID(Guid ID)
-        {
-            return this._ProductUnitOfWork.Products.Get(ID);
-        }
 
-        public Product FindProductByName(string name)
-        {
-            return this._ProductUnitOfWork.Products.GetAll().Where(entity => entity.Name == name).SingleOrDefault();
-        }
 
-        public IEnumerable<Product> GetAllProduct()
-        {
-            return this._ProductUnitOfWork.Products.GetAll();
-        }
 
-        public void UpdateProduct(Guid productID, Product product)
+
+        public void UpdateProduct(Guid productID, ProductModel product)
         {
             var productToUpdate = _ProductUnitOfWork.Products.Get(productID);
-            productToUpdate = product;
+            productToUpdate = this._mapper.MapFromModelToEntity(product);
             this._ProductUnitOfWork.Commit();
+        }
+
+        ProductModel IProductService.FindProductByID(Guid ID)
+        {
+            var productEntity = this._ProductUnitOfWork.Products.Get(ID);
+            return this._mapper.MapFromEntityToModel(productEntity);
+        }
+
+        ProductModel IProductService.FindProductByName(string name)
+        {
+            var productEntity = this._ProductUnitOfWork.Products.GetAll()?.Where(entity => entity.Name == name)?.SingleOrDefault();
+            return this._mapper.MapFromEntityToModel(productEntity);
+        }
+
+        IEnumerable<ProductModel> IProductService.GetAllProduct()
+        {
+            var productModels = this._ProductUnitOfWork.Products.GetAll();
+            return _mapper.MapFromEntityRangeToModels(productModels);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductCore.Abstraction.Interface.Mappers
 {
-    interface IModelMappper< TOrigin,  TTArget>
+    public interface IModelMappper< TOrigin,  TTArget>
     {
         TTArget Map(TOrigin orignalObject);
         IEnumerable<TTArget> MapRange(IEnumerable<TOrigin> orignalObjects);

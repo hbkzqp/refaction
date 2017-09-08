@@ -5,7 +5,7 @@ using System.Text;
 using AutoMapper;
 using ProductCore.Abstraction.Interface.Mappers;
 
-namespace ProductCore.Implementation
+namespace ProductCore.Implementation.Mappers
 {
     public class ModelMappper<TOrigin, TTArget>: IModelMappper<TOrigin, TTArget>
     {

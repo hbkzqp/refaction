@@ -1,4 +1,5 @@
 ﻿using ProductData;
+using ProductServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace ProductServices.Interface
 {
    public interface IProductOptionService
     {
-        IEnumerable<ProductOption> GetOptionsByProductID(Guid optionID);
-        ProductOption GetExactOption(Guid productID, Guid optionID);
-        void AddOption(Guid productID, ProductOption option);
-        void UpdateOption(Guid optionID, ProductOption option);
+        IEnumerable<ProductOptionModel> GetOptionsByProductID(Guid productID);
+        ProductOptionModel GetExactOption(Guid productID, Guid optionID);
+        void AddOption(Guid productID, ProductOptionModel option);
+        void UpdateOption(Guid optionID, ProductOptionModel option);
         void DeleteOption(Guid optionID);
     }
 }
