@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ProductOptionsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="App_Data\Entities\Product.cs">
       <DependentUpon>ProductEntities.tt</DependentUpon>
@@ -162,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProductServices\ProductServices.csproj">
+      <Project>{EB6ABE6B-31CB-4470-9E09-743D2A5C5E11}</Project>
+      <Name>ProductServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

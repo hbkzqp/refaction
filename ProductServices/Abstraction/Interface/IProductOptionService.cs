@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductServices.Interface
 {
-    interface IProductOptionService
+   public interface IProductOptionService
     {
         IEnumerable<ProductOption> GetOptionsByProductID(Guid optionID);
         ProductOption GetExactOption(Guid productID, Guid optionID);

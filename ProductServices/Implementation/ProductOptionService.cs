@@ -9,7 +9,7 @@ using ProductData;
 
 namespace ProductServices.Implementation
 {
-    class ProductOptionService : Service, IProductOptionService
+    public class ProductOptionService : Service, IProductOptionService
     {
         public ProductOptionService(string ConnectionStringOrName) : base(ConnectionStringOrName)
         {

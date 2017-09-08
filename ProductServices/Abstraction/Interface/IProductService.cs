@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductServices.Interface
 {
-    interface IProductService
+    public interface IProductService
     {
         IEnumerable<Product> GetAllProduct();
         Product FindProductByName(string name);

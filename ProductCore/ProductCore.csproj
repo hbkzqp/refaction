@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EB6ABE6B-31CB-4470-9E09-743D2A5C5E11}</ProjectGuid>
+    <ProjectGuid>{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProductServices</RootNamespace>
-    <AssemblyName>ProductServices</AssemblyName>
+    <RootNamespace>ProductCore</RootNamespace>
+    <AssemblyName>ProductCore</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,29 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstraction\Interface\IProductOptionService.cs" />
-    <Compile Include="Abstraction\Interface\IProductService.cs" />
-    <Compile Include="Abstraction\Service.cs" />
-    <Compile Include="Implementation\ProductOptionService.cs" />
-    <Compile Include="Implementation\ProductService.cs" />
-    <Compile Include="Models\Helpers.cs" />
-    <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\ProductOption.cs" />
-    <Compile Include="Models\Products.cs" />
+    <Compile Include="Abstraction\Interface\Mappers\IModelMappper.cs" />
+    <Compile Include="Abstraction\Interface\Mappers\IProductModelMapper.cs" />
+    <Compile Include="Implementation\ModelMappper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProductDAL\ProductDAL.csproj">
-      <Project>{856296F1-5741-47D3-847B-EE1FFF61C01D}</Project>
-      <Name>ProductDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProductData\ProductData.csproj">
-      <Project>{04494CA5-AA63-42E0-8109-56FD40800156}</Project>
-      <Name>ProductData</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

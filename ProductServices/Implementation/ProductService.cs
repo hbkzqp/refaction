@@ -3,22 +3,25 @@ using ProductServices.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductData;
-using ProductDAL.UnitOfWork;
+using ProductServices.Models;
+using ProductCore.Abstraction.Interface.Mappers;
 
 namespace ProductServices.Implementation
 {
-    class ProductService : Service, IProductService
+    public class ProductService : Service, IProductService
     {
         public ProductService(string ConnectionStringOrName) : base(ConnectionStringOrName)
         {
 
         }
 
+        private IModelMappper<Product,ProductModel> _mapper;
+
+
         public void AddProduct(Product product)
         {
+            
             this._ProductUnitOfWork.Products.Add(product);
             this._ProductUnitOfWork.Commit();
         }

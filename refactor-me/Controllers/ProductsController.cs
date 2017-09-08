@@ -1,18 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Web.Routing;
 using refactor_me.Models;
+using ProductServices.Interface;
+using ProductCore.Abstraction.Interface.Mappers;
 
 namespace refactor_me.Controllers
 {
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
+        private IProductService _productService;
+
+        public ProductsController(IProductService service)
+        {
+            this._productService = service;
+        }
         [Route]
         [HttpGet]
-        public Products GetAll()
+        public IEnumerable<ProductModel> GetAll()
         {
-            return new Products();
+            return this._productService.GetAllProduct();
         }
 
         [Route]
