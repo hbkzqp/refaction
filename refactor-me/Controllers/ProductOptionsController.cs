@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace refactor_me.Controllers
 {
-    [RoutePrefix("products")]
+    [RoutePrefix("products/{productId}/options")]
     public class ProductOptionsController : ApiController
     {
         private IProductOptionService _productOptionService;
@@ -16,35 +16,35 @@ namespace refactor_me.Controllers
         {
             this._productOptionService = service;
         }
-        [Route("{productId}/options")]
+        [Route("GetAllOptions")]
         [HttpGet]
         public IEnumerable<ProductOptionModel>  GetOptions(Guid productId)
         {
             return this._productOptionService.GetOptionsByProductID(productId);
         }
 
-        [Route("{productId}/options/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public ProductOptionModel GetOption(Guid productId, Guid id)
         {
             return this._productOptionService.GetExactOption(productId, id);
         }
 
-        [Route("{productId}/options")]
+        [Route("CreateOption")]
         [HttpPost]
         public void CreateOption(Guid productId, ProductOptionModel option)
         {
             this._productOptionService.AddOption(productId, option);
         }
 
-        [Route("{productId}/options/{id}")]
+        [Route("UpdateOption/{id}")]
         [HttpPut]
         public void UpdateOption(Guid id, ProductOptionModel option)
         {
             this._productOptionService.UpdateOption(id, option);
         }
 
-        [Route("{productId}/options/{id}")]
+        [Route("DeleteOption/{id}")]
         [HttpDelete]
         public void DeleteOption(Guid id)
         {

@@ -20,8 +20,6 @@ namespace ProductServices.Implementation
         private IEntityModelMapper<Product, ProductModel> _mapper = new EntityModelMapper<Product, ProductModel>();
 
 
-
-
         public void AddProduct(ProductModel product)
         {
             var productEntity = _mapper.MapFromModelToEntity(product);
@@ -33,9 +31,6 @@ namespace ProductServices.Implementation
         {
             this._ProductUnitOfWork.Products.RemoveByKey(ID);
         }
-
-
-
 
 
         public void UpdateProduct(Guid productID, ProductModel product)

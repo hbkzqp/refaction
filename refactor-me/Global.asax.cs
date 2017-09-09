@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using refactor_me.App_Start;
 
 namespace refactor_me
 {
@@ -12,6 +13,8 @@ namespace refactor_me
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            DIConfig.getInstance().ConfigServices();
+
         }
     }
 }

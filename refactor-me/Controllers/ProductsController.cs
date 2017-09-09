@@ -14,46 +14,50 @@ namespace refactor_me.Controllers
     {
         private IProductService _productService;
 
+        public ProductsController()
+        {
+            
+        }
         public ProductsController(IProductService service)
         {
             this._productService = service;
         }
-        [Route]
+        [Route("GetAll")]
         [HttpGet]
         public IEnumerable<ProductModel> GetAll()
         {
             return this._productService.GetAllProduct();
         }
 
-        [Route]
+        [Route("SearchByName/{name}")]
         [HttpGet]
         public ProductModel SearchByName(string name)
         {
             return this._productService.FindProductByName(name);
         }
 
-        [Route("{id}")]
+        [Route("GetProduct/{id}")]
         [HttpGet]
         public ProductModel GetProduct(Guid id)
         {
             return this._productService.FindProductByID(id);
         }
 
-        [Route]
+        [Route("CreateProduct")]
         [HttpPost]
-        public void Create(ProductModel product)
+        public void Create([FromBody]ProductModel product)
         {
             this._productService.AddProduct(product);
         }
 
-        [Route("{id}")]
+        [Route("UpdateProduct/{id}")]
         [HttpPut]
         public void Update(Guid id, ProductModel product)
         {
             this._productService.UpdateProduct(id, product);
         }
 
-        [Route("{id}")]
+        [Route("DeleteProduct/{id}")]
         [HttpDelete]
         public void Delete(Guid id)
         {
