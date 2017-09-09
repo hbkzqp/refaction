@@ -22,7 +22,7 @@ namespace ProductDAL.UnitOfWork
 
         public IRepository<Product, Guid> Products => this._Products;
 
-        public Repository<ProductOption, Guid> ProductOptions => this.ProductOptions;
+        public IRepository<ProductOption, Guid> ProductOptions => this._ProductOptions;
 
         public int Commit()
         {

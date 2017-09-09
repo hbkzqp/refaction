@@ -10,6 +10,8 @@ namespace ProductCore.Abstraction.Interface.Mappers
     {
         TTArget Map(TOrigin orignalObject);
         IEnumerable<TTArget> MapRange(IEnumerable<TOrigin> orignalObjects);
+
+        void MapToExistedTarget(TOrigin orignalObject, TTArget targetObject);
     }
     
 }

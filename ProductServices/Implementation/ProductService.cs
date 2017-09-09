@@ -30,13 +30,14 @@ namespace ProductServices.Implementation
         public void DeleteProuct(Guid ID)
         {
             this._ProductUnitOfWork.Products.RemoveByKey(ID);
+            this._ProductUnitOfWork.Commit();
         }
 
 
         public void UpdateProduct(Guid productID, ProductModel product)
         {
             var productToUpdate = _ProductUnitOfWork.Products.Get(productID);
-            productToUpdate = this._mapper.MapFromModelToEntity(product);
+            this._mapper.MapFromModelToExistEntity(product, productToUpdate);
             this._ProductUnitOfWork.Commit();
         }
 

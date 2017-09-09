@@ -29,7 +29,7 @@ namespace refactor_me.Controllers
             return this._productService.GetAllProduct();
         }
 
-        [Route("SearchByName/{name}")]
+        [Route("SearchByName")]
         [HttpGet]
         public ProductModel SearchByName(string name)
         {
@@ -52,7 +52,7 @@ namespace refactor_me.Controllers
 
         [Route("UpdateProduct/{id}")]
         [HttpPut]
-        public void Update(Guid id, ProductModel product)
+        public void Update(Guid id, [FromBody]ProductModel product)
         {
             this._productService.UpdateProduct(id, product);
         }

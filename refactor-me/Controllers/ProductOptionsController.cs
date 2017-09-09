@@ -32,14 +32,14 @@ namespace refactor_me.Controllers
 
         [Route("CreateOption")]
         [HttpPost]
-        public void CreateOption(Guid productId, ProductOptionModel option)
+        public void CreateOption(Guid productId, [FromBody]ProductOptionModel option)
         {
             this._productOptionService.AddOption(productId, option);
         }
 
         [Route("UpdateOption/{id}")]
         [HttpPut]
-        public void UpdateOption(Guid id, ProductOptionModel option)
+        public void UpdateOption(Guid id, [FromBody]ProductOptionModel option)
         {
             this._productOptionService.UpdateOption(id, option);
         }

@@ -31,5 +31,10 @@ namespace ProductCore.Implementation.Mappers
         {
             return this._modelMappper.Map(model);
         }
+
+        public void MapFromModelToExistEntity(TModel model,TEntity entity)
+        {
+            this._modelMappper.MapToExistedTarget(model,entity);
+        }
     }
 }

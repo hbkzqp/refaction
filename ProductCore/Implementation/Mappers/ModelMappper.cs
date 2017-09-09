@@ -19,5 +19,10 @@ namespace ProductCore.Implementation.Mappers
         {
             return orignalObjects.Select(o => this._mapper.Map<TTArget>(o));
         }
+
+        public void MapToExistedTarget(TOrigin orignalObject, TTArget targetObject)
+        {
+            this._mapper.Map<TOrigin, TTArget>(orignalObject, targetObject);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace ProductServices.Implementation
         }
         private IEntityModelMapper<ProductOption, ProductOptionModel> _mapper = new EntityModelMapper<ProductOption, ProductOptionModel>();
 
-      
+
 
         public void AddOption(Guid productID, ProductOptionModel option)
         {
@@ -34,25 +34,10 @@ namespace ProductServices.Implementation
             this._ProductUnitOfWork.ProductOptions.RemoveByKey(optionID);
             this._ProductUnitOfWork.Commit();
         }
-
-        
-
-        public IEnumerable<ProductOption> GetOptionsByProductID(Guid productID)
-        {
-            return this._ProductUnitOfWork.Products.Get(productID)?.ProductOptions;
-        }
-
-        public void UpdateOption(Guid optionID, ProductOption option)
-        {
-            var optionToUpdate = this._ProductUnitOfWork.ProductOptions.Get(optionID);
-            optionToUpdate = option;
-            this._ProductUnitOfWork.Commit();
-        }
-
         public void UpdateOption(Guid optionID, ProductOptionModel option)
         {
             var optionToUpdate = this._ProductUnitOfWork.ProductOptions.Get(optionID);
-            optionToUpdate = this._mapper.MapFromModelToEntity(option);
+            this._mapper.MapFromModelToExistEntity(option, optionToUpdate);
             this._ProductUnitOfWork.Commit();
 
         }
@@ -60,13 +45,14 @@ namespace ProductServices.Implementation
         ProductOptionModel IProductOptionService.GetExactOption(Guid productID, Guid optionID)
         {
 
-            var optionEntity = this._ProductUnitOfWork.Products.Get(productID)?.ProductOptions?.Where(opt => opt.Id == optionID).SingleOrDefault();
+            var optionEntity =
+                this._ProductUnitOfWork.ProductOptions.SingleOrDefault(opt => (opt.ProductId == productID && opt.Id == optionID));
             return this._mapper.MapFromEntityToModel(optionEntity);
         }
 
         IEnumerable<ProductOptionModel> IProductOptionService.GetOptionsByProductID(Guid productID)
         {
-            var optionEntities =  this._ProductUnitOfWork.Products.Get(productID)?.ProductOptions;
+            var optionEntities = this._ProductUnitOfWork.ProductOptions.Find(opt => opt.ProductId == productID);
             return this._mapper.MapFromEntityRangeToModels(optionEntities);
         }
     }
