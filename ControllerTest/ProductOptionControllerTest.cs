@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ControllerTest
 {
     [TestClass]
-    public class UnitTest1
+    public class ProductOptionControllerTest
     {
         /// <summary>
         ///Test For 
