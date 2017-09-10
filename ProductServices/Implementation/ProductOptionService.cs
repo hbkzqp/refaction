@@ -19,9 +19,9 @@ namespace ProductServices.Implementation
         {
         }
 
-        public ProductOptionService(IProductUnitOfWork unitOfWork):base(unitOfWork)
+        public ProductOptionService(IProductUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            
+
         }
         private IEntityModelMapper<ProductOption, ProductOptionModel> _mapper = new EntityModelMapper<ProductOption, ProductOptionModel>();
 

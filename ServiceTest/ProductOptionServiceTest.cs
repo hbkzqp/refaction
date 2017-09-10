@@ -12,7 +12,7 @@ using ProductServices.Models;
 namespace ServiceTest
 {
     [TestClass]
-    public class ProductOptionServiceTest:BaseTest
+    public class ProductOptionServiceTest : BaseTest
     {
         private ProductOptionModel _testProductOptionModel;
         private ProductOptionModel _testProductOptionModel0;
@@ -68,7 +68,7 @@ namespace ServiceTest
                 DeliveryPrice = 2.02m,
                 ProductOptions = new List<ProductOption>(),
             };
-            
+
             this._mockProductTable.Add(this._testProduct);
             this._testService = new ProductOptionService(this._mockUnitOfwork.Object);
         }
@@ -81,12 +81,12 @@ namespace ServiceTest
             //Arrange
             this._mockProductOptionsTable.Clear();
             //Act
-            this._testService.AddOption(this._testProduct.Id,this._testProductOptionModel);
+            this._testService.AddOption(this._testProduct.Id, this._testProductOptionModel);
             //Assert
             Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Id == this._testProductOption.Id));
             Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Description == this._testProductOption.Description));
             Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Name == this._testProductOption.Name));
-            Assert.IsTrue(this._testProduct.ProductOptions.Any(p=>p.Id==this._testProductOption.Id));
+            Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Id == this._testProductOption.Id));
             Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Description == this._testProductOption.Description));
             Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Name == this._testProductOption.Name));
         }
@@ -127,7 +127,7 @@ namespace ServiceTest
             this._mockProductOptionsTable.Clear();
             this._mockProductOptionsTable.Add(this._testProductOption);
             //Act
-            var result = this._testService.GetExactOption(this._testProduct.Id,this._testProductOption.Id);
+            var result = this._testService.GetExactOption(this._testProduct.Id, this._testProductOption.Id);
             //Assert
             Assert.AreEqual(result.Id, this._testProductOption.Id);
             Assert.AreEqual(result.Description, this._testProductOption.Description);

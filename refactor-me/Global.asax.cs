@@ -13,7 +13,7 @@ namespace refactor_me
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            DIConfig.getInstance().ConfigServices();
+            DIConfig.GetInstance().ConfigServices();
 
         }
     }

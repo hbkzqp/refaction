@@ -18,7 +18,7 @@ namespace refactor_me.Controllers
         }
         [Route("GetAllOptions")]
         [HttpGet]
-        public IEnumerable<ProductOptionModel>  GetOptions(Guid productId)
+        public IEnumerable<ProductOptionModel> GetOptions(Guid productId)
         {
             return this._productOptionService.GetOptionsByProductID(productId);
         }

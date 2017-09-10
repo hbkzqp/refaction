@@ -17,7 +17,7 @@ namespace ProductServices.Implementation
         {
 
         }
-        public ProductService(IProductUnitOfWork unitOfWork):base(unitOfWork)
+        public ProductService(IProductUnitOfWork unitOfWork) : base(unitOfWork)
         {
 
         }

@@ -17,7 +17,7 @@ namespace refactor_me.App_Start
     public class DIConfig
     {
         private static volatile DIConfig instance = null;
-        public static DIConfig getInstance()
+        public static DIConfig GetInstance()
         {
             if (instance == null)
             {
@@ -45,13 +45,7 @@ namespace refactor_me.App_Start
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
-            //var builder = new ContainerBuilder();
-            //builder.RegisterControllers(typeof(ApiController).Assembly);
-            //List<NamedParameter> ListNamedParameter = new List<NamedParameter>() { new NamedParameter("ConnectionStringOrName", Constant.CONNECTION_STRING) };
-            //builder.RegisterType<ProductService>().WithParameters(ListNamedParameter).As<IProductService>().InstancePerLifetimeScope();
-            //builder.RegisterType<ProductOptionService>().WithParameters(ListNamedParameter).As<IProductOptionService>().InstancePerLifetimeScope();
-            //IContainer container = builder.Build();
-            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
 
         }
     }

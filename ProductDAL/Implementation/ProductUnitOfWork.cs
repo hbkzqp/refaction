@@ -9,7 +9,7 @@ namespace ProductDAL.UnitOfWork
 {
     public class ProductUnitOfWork : IProductUnitOfWork
     {
-        private IRepository<Product,Guid> _Products;
+        private IRepository<Product, Guid> _Products;
 
         private IRepository<ProductOption, Guid> _ProductOptions;
         private DbContext _Context;

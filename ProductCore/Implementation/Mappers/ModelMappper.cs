@@ -7,7 +7,7 @@ using ProductCore.Abstraction.Interface.Mappers;
 
 namespace ProductCore.Implementation.Mappers
 {
-    public class ModelMappper<TOrigin, TTArget>: IModelMappper<TOrigin, TTArget>
+    public class ModelMappper<TOrigin, TTArget> : IModelMappper<TOrigin, TTArget>
     {
         protected IMapper _mapper = new MapperConfiguration(cfg => cfg.CreateMap<TOrigin, TTArget>()).CreateMapper();
         public TTArget Map(TOrigin orignalObject)

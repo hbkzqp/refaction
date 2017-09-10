@@ -34,7 +34,7 @@ namespace ServiceTest
         private void MockProductRepository()
         {
             this._mockProductTable = new List<Product>();
-            var mock = new Mock<IRepository<Product,Guid>>();
+            var mock = new Mock<IRepository<Product, Guid>>();
             mock.Setup(s => s.Find(It.IsAny<Expression<Func<Product, bool>>>()))
                 .Returns<Expression<Func<Product, bool>>>(ex => _mockProductTable.Where(ex.Compile()));
             mock.Setup(s => s.Add(It.IsAny<Product>())).Callback<Product>(p => this._mockProductTable.Add(p));
@@ -43,10 +43,10 @@ namespace ServiceTest
             mock.Setup(s => s.Get(It.IsAny<Guid>())).Returns<Guid>(id => this._mockProductTable.Find(p => p.Id == id));
             mock.Setup(s => s.GetAll()).Returns(this._mockProductTable);
             mock.Setup(s => s.Remove(It.IsAny<Product>())).Callback<Product>(p => this._mockProductTable.Remove(p));
-            mock.Setup(s=>s.RemoveByKey(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockProductTable.Find(p => p.Id == id); this._mockProductTable.Remove(product); });
+            mock.Setup(s => s.RemoveByKey(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockProductTable.Find(p => p.Id == id); this._mockProductTable.Remove(product); });
             mock.Setup(s => s.RemoveRange(It.IsAny<IEnumerable<Product>>()))
                 .Callback<IEnumerable<Product>>(ps => this._mockProductTable.RemoveAll(ps.Contains));
-            mock.Setup(s=>s.SingleOrDefault(It.IsAny<Expression<Func<Product, bool>>>()))
+            mock.Setup(s => s.SingleOrDefault(It.IsAny<Expression<Func<Product, bool>>>()))
                 .Returns<Expression<Func<Product, bool>>>(ex => _mockProductTable.Where(ex.Compile()).SingleOrDefault());
             this._mockUnitOfwork.Setup(u => u.Products).Returns(mock.Object);
         }

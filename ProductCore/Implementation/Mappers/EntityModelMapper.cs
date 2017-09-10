@@ -9,8 +9,8 @@ namespace ProductCore.Implementation.Mappers
 {
     public class EntityModelMapper<TEntity, TModel> : IEntityModelMapper<TEntity, TModel>
     {
-        private IModelMappper<TEntity,TModel> _entityMappper= new ModelMappper<TEntity, TModel>();
-        private IModelMappper<TModel,TEntity> _modelMappper = new ModelMappper<TModel, TEntity>();
+        private IModelMappper<TEntity, TModel> _entityMappper = new ModelMappper<TEntity, TModel>();
+        private IModelMappper<TModel, TEntity> _modelMappper = new ModelMappper<TModel, TEntity>();
 
         public IEnumerable<TModel> MapFromEntityRangeToModels(IEnumerable<TEntity> entities)
         {
@@ -22,7 +22,7 @@ namespace ProductCore.Implementation.Mappers
             return this._entityMappper.Map(entity);
         }
 
-        public IEnumerable<TEntity> MapFromModelRangeToEntity(IEnumerable<TModel> models )
+        public IEnumerable<TEntity> MapFromModelRangeToEntity(IEnumerable<TModel> models)
         {
             return this._modelMappper.MapRange(models);
         }
@@ -32,9 +32,9 @@ namespace ProductCore.Implementation.Mappers
             return this._modelMappper.Map(model);
         }
 
-        public void MapFromModelToExistEntity(TModel model,TEntity entity)
+        public void MapFromModelToExistEntity(TModel model, TEntity entity)
         {
-            this._modelMappper.MapToExistedTarget(model,entity);
+            this._modelMappper.MapToExistedTarget(model, entity);
         }
     }
 }

@@ -14,7 +14,7 @@ using ProductDAL.UnitOfWork;
 namespace ServiceTest
 {
     [TestClass]
-    public class ProductServiceTest:BaseTest
+    public class ProductServiceTest : BaseTest
     {
         private ProductModel _testProductModel;
         private ProductModel _testProductModel0;
@@ -28,7 +28,7 @@ namespace ServiceTest
         }
         protected void ConfigTest()
         {
-           
+
             this._testProductModel = new ProductModel()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
@@ -79,8 +79,8 @@ namespace ServiceTest
             //Act
             this._testService.AddProduct(this._testProductModel);
             //Assert
-            Assert.IsTrue(this._mockProductTable.Exists(p=>p.Id==this._testProduct.Id));
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.DeliveryPrice== this._testProduct.DeliveryPrice));
+            Assert.IsTrue(this._mockProductTable.Exists(p => p.Id == this._testProduct.Id));
+            Assert.IsTrue(this._mockProductTable.Exists(p => p.DeliveryPrice == this._testProduct.DeliveryPrice));
             Assert.IsTrue(this._mockProductTable.Exists(p => p.Description == this._testProduct.Description));
             Assert.IsTrue(this._mockProductTable.Exists(p => p.Name == this._testProduct.Name));
             Assert.IsTrue(this._mockProductTable.Exists(p => p.Price == this._testProduct.Price));
@@ -97,7 +97,7 @@ namespace ServiceTest
             //Act
             this._testService.DeleteProduct(this._testProductModel.Id);
             //Assert
-            Assert.AreEqual(1,this._mockProductTable.Count);
+            Assert.AreEqual(1, this._mockProductTable.Count);
             Assert.IsFalse(this._mockProductTable.Contains(this._testProduct));
         }
 
@@ -110,9 +110,9 @@ namespace ServiceTest
             this._testProductModel.Description = "manchester united!";
             this._testProductModel.Name = "JOSE Mourinho!";
             //Act
-            this._testService.UpdateProduct(this._testProductModel.Id,this._testProductModel);
+            this._testService.UpdateProduct(this._testProductModel.Id, this._testProductModel);
             //Assert
-            Assert.AreEqual(this._mockProductTable.Find(p=>p.Id==this._testProduct.Id).Description, "manchester united!");
+            Assert.AreEqual(this._mockProductTable.Find(p => p.Id == this._testProduct.Id).Description, "manchester united!");
             Assert.AreEqual(this._mockProductTable.Find(p => p.Id == this._testProduct.Id).Name, "JOSE Mourinho!");
         }
         [TestMethod]
@@ -169,7 +169,7 @@ namespace ServiceTest
             Assert.IsTrue(result.Any(p => p.Name == this._testProduct0.Name));
             Assert.IsTrue(result.Any(p => p.Price == this._testProduct0.Price));
         }
-        
+
 
     }
 }

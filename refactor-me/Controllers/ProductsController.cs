@@ -16,7 +16,7 @@ namespace refactor_me.Controllers
 
         public ProductsController()
         {
-            
+
         }
         public ProductsController(IProductService service)
         {
@@ -49,7 +49,7 @@ namespace refactor_me.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
             }
             this._productService.AddProduct(product);
         }

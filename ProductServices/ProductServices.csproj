@@ -52,7 +52,6 @@
     <Compile Include="Implementation\ProductService.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductOptionModel.cs" />
-    <Compile Include="Models\Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

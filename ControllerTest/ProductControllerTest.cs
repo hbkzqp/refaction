@@ -9,7 +9,7 @@ using refactor_me.Controllers;
 namespace ControllerTest
 {
     [TestClass]
-    public class ProductControllerTest:BaseTest
+    public class ProductControllerTest : BaseTest
     {
         private Mock<IProductService> _mockService;
         private List<ProductModel> _mockDatabase;
@@ -21,17 +21,38 @@ namespace ControllerTest
         {
             var mock = new Mock<IProductService>();
             mock.Setup(s => s.AddProduct(It.IsAny<ProductModel>())).Callback<ProductModel>(p => this._mockDatabase.Add(p));
-            mock.Setup(s => s.DeleteProduct(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockDatabase.Find(p => p.Id == id);this._mockDatabase.Remove(product); });
-            mock.Setup(s => s.FindProductByID(It.IsAny<Guid>())).Returns<Guid>(id=>this._mockDatabase.Find(p=>p.Id==id));
-            mock.Setup(s=>s.FindProductByName(It.IsAny<string>())).Returns<string>(str=> this._mockDatabase.Find(p => p.Name == str));
+            mock.Setup(s => s.DeleteProduct(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockDatabase.Find(p => p.Id == id); this._mockDatabase.Remove(product); });
+            mock.Setup(s => s.FindProductByID(It.IsAny<Guid>())).Returns<Guid>(id => this._mockDatabase.Find(p => p.Id == id));
+            mock.Setup(s => s.FindProductByName(It.IsAny<string>())).Returns<string>(str => this._mockDatabase.Find(p => p.Name == str));
             mock.Setup(s => s.GetAllProduct()).Returns(this._mockDatabase);
-            mock.Setup(s => s.UpdateProduct(It.IsAny<Guid>(), It.IsAny<ProductModel>())).Callback<Guid, ProductModel>((id, p) => { var product = this._mockDatabase.Find(pm => pm.Id == id); product.Name = p.Name; } );
+            mock.Setup(s => s.UpdateProduct(It.IsAny<Guid>(), It.IsAny<ProductModel>())).Callback<Guid, ProductModel>((id, p) => { var product = this._mockDatabase.Find(pm => pm.Id == id); product.Name = p.Name; });
             this._mockService = mock;
         }
+        protected override void ConfigTest()
+        {
+            this._mockDatabase = new List<ProductModel>();
+            MockService();
+            this._testProduct = new ProductModel()
+            {
+                Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
+                Name = "TestName",
+                Description = "TestDescription",
+                Price = 1.01m,
+                DeliveryPrice = 2.02m,
 
-        /// <summary>
-        ///Test For 
-        /// </summary>
+            };
+            this._testProduct0 = new ProductModel()
+            {
+                Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
+                Name = "TestName0",
+                Description = "TestDescription0",
+                Price = 1.1m,
+                DeliveryPrice = 2.2m,
+
+            };
+            this._testController = new ProductsController(this._mockService.Object);
+        }
+
         [TestMethod]
         public void TestAddProduct()
         {
@@ -42,7 +63,7 @@ namespace ControllerTest
             //Assert
             this._mockService.Verify(s => s.AddProduct(It.IsAny<ProductModel>()));
             Assert.IsTrue(this._mockDatabase.Contains(this._testProduct));
-            
+
         }
 
         [TestMethod]
@@ -113,34 +134,11 @@ namespace ControllerTest
             this._mockDatabase.Add(this._testProduct);
 
             //Act
-            this._testController.Update(this._testProduct.Id,this._testProduct0);
+            this._testController.Update(this._testProduct.Id, this._testProduct0);
             //Assert
-            this._mockService.Verify(s => s.UpdateProduct(It.IsAny<Guid>(),It.IsAny<ProductModel>()));
+            this._mockService.Verify(s => s.UpdateProduct(It.IsAny<Guid>(), It.IsAny<ProductModel>()));
             Assert.IsTrue(this._mockDatabase.Exists(p => p.Name == this._testProduct0.Name));
         }
-        protected override void ConfigTest()
-        {
-            this._mockDatabase = new List<ProductModel>();
-            MockService();
-            this._testProduct = new ProductModel()
-            {
-                Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
-                Name = "TestName",
-                Description = "TestDescription",
-                Price = 1.01m,
-                DeliveryPrice = 2.02m,
 
-            };
-            this._testProduct0 = new ProductModel()
-            {
-                Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
-                Name = "TestName0",
-                Description = "TestDescription0",
-                Price = 1.1m,
-                DeliveryPrice = 2.2m,
-
-            };
-            this._testController = new ProductsController(this._mockService.Object);
-        }
     }
 }
