@@ -37,7 +37,8 @@ namespace refactor_me.App_Start
 
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            List<NamedParameter> ListNamedParameter = new List<NamedParameter>() { new NamedParameter("ConnectionStringOrName", Constant.CONNECTION_STRING) };
+            var connstr = Constant.CONNECTION_STRING.Replace("{DataDirectory}", HttpContext.Current.Server.MapPath("~/App_Data"));
+            List<NamedParameter> ListNamedParameter = new List<NamedParameter>() { new NamedParameter("ConnectionStringOrName", connstr) };
             builder.RegisterType<ProductService>().WithParameters(ListNamedParameter).As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductOptionService>().WithParameters(ListNamedParameter).As<IProductOptionService>().InstancePerLifetimeScope();
 

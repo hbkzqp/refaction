@@ -6,10 +6,12 @@ using System.Web.Routing;
 using ProductServices.Interface;
 using ProductCore.Abstraction.Interface.Mappers;
 using ProductServices.Models;
+using refactor_me.Filters;
 
 namespace refactor_me.Controllers
 {
     [RoutePrefix("products")]
+    [ModelVaild]
     public class ProductsController : ApiController
     {
         private IProductService _productService;
@@ -24,9 +26,9 @@ namespace refactor_me.Controllers
         }
         [Route("GetAll")]
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IEnumerable<ProductModel> GetAll()
         {
-            return Ok(this._productService.GetAllProduct());
+            return this._productService.GetAllProduct();
         }
 
         [Route("SearchByName")]
@@ -45,6 +47,7 @@ namespace refactor_me.Controllers
 
         [Route("CreateProduct")]
         [HttpPost]
+       
         public void Create([FromBody]ProductModel product)
         {
             if (ModelState.IsValid)

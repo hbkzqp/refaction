@@ -72,7 +72,7 @@ namespace ServiceTest
         ///Test For 
         /// </summary>
         [TestMethod]
-        public void TestAddProduct()
+        public void TestAddProductService()
         {
             //Arrange
             this._mockProductTable.Clear();
@@ -88,7 +88,7 @@ namespace ServiceTest
 
         /// </summary>
         [TestMethod]
-        public void TestDeleteProduct()
+        public void TestDeleteProductService()
         {
             //Arrange
             this._mockProductTable.Clear();
@@ -102,7 +102,7 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void TestUpdateProduct()
+        public void TestUpdateProductService()
         {
             //Arrange
             this._mockProductTable.Clear();
@@ -116,7 +116,7 @@ namespace ServiceTest
             Assert.AreEqual(this._mockProductTable.Find(p => p.Id == this._testProduct.Id).Name, "JOSE Mourinho!");
         }
         [TestMethod]
-        public void TestFindProductByID()
+        public void TestFindProductByIDService()
         {
             //Arrange
             this._mockProductTable.Clear();
@@ -132,7 +132,7 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void TestFindProductByName()
+        public void TestFindProductByNameService()
         {
             //Arrange
             this._mockProductTable.Clear();
@@ -148,7 +148,7 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void TestGetAllProduct()
+        public void TestGetAllProductService()
         {
             //Arrange
             this._mockProductTable.Clear();

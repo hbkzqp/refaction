@@ -13,12 +13,13 @@ namespace ProductData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProductEntity : DbContext
+    public partial class ProductContext : DbContext
     {
-        public ProductEntity(string nameOrConnection):base(nameOrConnection)
+        public ProductContext(string nameOrConnection)
+            : base(nameOrConnection)
         {
-            
         }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

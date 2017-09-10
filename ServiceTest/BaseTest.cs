@@ -73,9 +73,6 @@ namespace ServiceTest
         {
             this.MockUnitOfWork();
         }
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+
     }
 }

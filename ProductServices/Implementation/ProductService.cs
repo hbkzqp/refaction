@@ -26,8 +26,8 @@ namespace ProductServices.Implementation
 
         public void AddProduct(ProductModel product)
         {
-            var productEntity = _mapper.MapFromModelToEntity(product);
-            this._ProductUnitOfWork.Products.Add(productEntity);
+            var ProductContext = _mapper.MapFromModelToEntity(product);
+            this._ProductUnitOfWork.Products.Add(ProductContext);
             this._ProductUnitOfWork.Commit();
         }
 
@@ -47,14 +47,14 @@ namespace ProductServices.Implementation
 
         ProductModel IProductService.FindProductByID(Guid ID)
         {
-            var productEntity = this._ProductUnitOfWork.Products.Get(ID);
-            return this._mapper.MapFromEntityToModel(productEntity);
+            var ProductContext = this._ProductUnitOfWork.Products.Get(ID);
+            return this._mapper.MapFromEntityToModel(ProductContext);
         }
 
         ProductModel IProductService.FindProductByName(string name)
         {
-            var productEntity = this._ProductUnitOfWork.Products.GetAll()?.Where(entity => entity.Name == name)?.SingleOrDefault();
-            return this._mapper.MapFromEntityToModel(productEntity);
+            var ProductContext = this._ProductUnitOfWork.Products.GetAll()?.Where(entity => entity.Name == name)?.SingleOrDefault();
+            return this._mapper.MapFromEntityToModel(ProductContext);
         }
 
         IEnumerable<ProductModel> IProductService.GetAllProduct()

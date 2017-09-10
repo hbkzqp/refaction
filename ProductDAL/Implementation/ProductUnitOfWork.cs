@@ -15,7 +15,7 @@ namespace ProductDAL.UnitOfWork
         private DbContext _Context;
         public ProductUnitOfWork(string NameOrConnection)
         {
-            this._Context = new ProductEntity(NameOrConnection);
+            this._Context = new ProductContext(NameOrConnection);
             this._Products = new Repository<Product, Guid>(this._Context);
             this._ProductOptions = new Repository<ProductOption, Guid>(this._Context);
         }
