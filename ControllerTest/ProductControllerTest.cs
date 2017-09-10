@@ -118,7 +118,7 @@ namespace ControllerTest
             this._mockDatabase.Add(this._testProduct);
             this._mockDatabase.Add(this._testProduct0);
             //Act
-            var results = this._testController.GetAll() as List<ProductModel>;
+            var results = this._testController.GetAll().Items as List<ProductModel>;
             //Assert
 
             this._mockService.Verify(s => s.GetAllProduct());

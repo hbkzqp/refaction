@@ -141,6 +141,8 @@
     </Compile>
     <Compile Include="Helpers\Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ProductOptions.cs" />
+    <Compile Include="ViewModel\Products.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

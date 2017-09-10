@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
 using System.Web.Http;
 using System.Web.Routing;
 using ProductServices.Interface;
-using ProductCore.Abstraction.Interface.Mappers;
 using ProductServices.Models;
 using refactor_me.Filters;
+using refactor_me.ViewModel;
 
 namespace refactor_me.Controllers
 {
@@ -16,55 +14,46 @@ namespace refactor_me.Controllers
     {
         private IProductService _productService;
 
-        public ProductsController()
-        {
-
-        }
         public ProductsController(IProductService service)
         {
             this._productService = service;
         }
-        [Route("GetAll")]
+        [Route("")]
         [HttpGet]
-        public IEnumerable<ProductModel> GetAll()
+        public Products GetAll()
         {
-            return this._productService.GetAllProduct();
+            return new Products() { Items = this._productService.GetAllProduct() }; ;
         }
 
-        [Route("SearchByName")]
+        [Route("")]
         [HttpGet]
         public ProductModel SearchByName(string name)
         {
             return this._productService.FindProductByName(name);
         }
 
-        [Route("GetProduct/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public ProductModel GetProduct(Guid id)
         {
             return this._productService.FindProductByID(id);
         }
 
-        [Route("CreateProduct")]
+        [Route("")]
         [HttpPost]
-       
         public void Create([FromBody]ProductModel product)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
             this._productService.AddProduct(product);
         }
 
-        [Route("UpdateProduct/{id}")]
+        [Route("{id}")]
         [HttpPut]
         public void Update(Guid id, [FromBody]ProductModel product)
         {
             this._productService.UpdateProduct(id, product);
         }
 
-        [Route("DeleteProduct/{id}")]
+        [Route("{id}")]
         [HttpDelete]
         public void Delete(Guid id)
         {

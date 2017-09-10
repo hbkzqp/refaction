@@ -9,10 +9,9 @@
 
 namespace ProductData
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class ProductContext : DbContext
     {
         public ProductContext(string nameOrConnection)
