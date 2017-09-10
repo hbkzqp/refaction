@@ -4,9 +4,10 @@ using ProductServices.Interface;
 using Moq;
 using ProductServices.Models;
 using System.Collections.Generic;
+using ApiControllerTest;
 using refactor_me.Controllers;
 
-namespace ControllerTest
+namespace ApiControllerTest
 {
     [TestClass]
     public class ProductControllerTest : BaseTest

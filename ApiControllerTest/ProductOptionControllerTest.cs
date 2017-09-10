@@ -1,11 +1,12 @@
 ﻿using System;
+using ApiControllerTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ProductServices.Interface;
 using ProductServices.Models;
 using refactor_me.Controllers;
 
-namespace ControllerTest
+namespace ApiControllerTest
 {
     [TestClass]
     public class ProductOptionControllerTest : BaseTest

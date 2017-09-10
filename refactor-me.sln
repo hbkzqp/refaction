@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "refactor-me", "refactor-me\refactor-me.csproj", "{20AB69F9-F2D3-4A68-96C3-424EC8B9406E}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -20,13 +20,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDAL", "ProductDAL\Pr
 		{04494CA5-AA63-42E0-8109-56FD40800156} = {04494CA5-AA63-42E0-8109-56FD40800156}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{9D91F612-69BB-426E-917D-1033ADF7C1DA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCore", "ProductCore\ProductCore.csproj", "{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTest", "ServiceTest\ServiceTest.csproj", "{04DA3430-7662-4E73-93B8-A6161539688E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{81D973A4-55E5-4484-8DA3-0CA72D71EA01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiControllerTest", "ApiControllerTest\ApiControllerTest.csproj", "{58CC73CA-D58B-4A1A-865E-E5D23A648EB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +50,6 @@ Global
 		{856296F1-5741-47D3-847B-EE1FFF61C01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{856296F1-5741-47D3-847B-EE1FFF61C01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{856296F1-5741-47D3-847B-EE1FFF61C01D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D91F612-69BB-426E-917D-1033ADF7C1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6251A36-F4AC-4E70-AF4B-76B12A41C52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,13 +58,17 @@ Global
 		{04DA3430-7662-4E73-93B8-A6161539688E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04DA3430-7662-4E73-93B8-A6161539688E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04DA3430-7662-4E73-93B8-A6161539688E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58CC73CA-D58B-4A1A-865E-E5D23A648EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58CC73CA-D58B-4A1A-865E-E5D23A648EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58CC73CA-D58B-4A1A-865E-E5D23A648EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58CC73CA-D58B-4A1A-865E-E5D23A648EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9D91F612-69BB-426E-917D-1033ADF7C1DA} = {81D973A4-55E5-4484-8DA3-0CA72D71EA01}
 		{04DA3430-7662-4E73-93B8-A6161539688E} = {81D973A4-55E5-4484-8DA3-0CA72D71EA01}
+		{58CC73CA-D58B-4A1A-865E-E5D23A648EB5} = {81D973A4-55E5-4484-8DA3-0CA72D71EA01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88325450-8CF5-4DCE-8C32-D80EE5236235}
