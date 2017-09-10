@@ -125,16 +125,6 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\Entities\ProductEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ProductEntities.Context.cs</LastGenOutput>
-      <DependentUpon>ProductEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="App_Data\Entities\ProductEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProductEntities.edmx</DependentUpon>
-      <LastGenOutput>ProductEntities.cs</LastGenOutput>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -145,27 +135,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ProductOptionsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="App_Data\Entities\Product.cs">
-      <DependentUpon>ProductEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="App_Data\Entities\ProductEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="App_Data\Entities\ProductEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="App_Data\Entities\ProductEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductEntities.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Data\Entities\ProductOption.cs">
-      <DependentUpon>ProductEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,13 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="App_Data\Entities\ProductEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProductEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="App_Data\Entities\ProductEntities.edmx.diagram">
-      <DependentUpon>ProductEntities.edmx</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,8 +151,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Repositories\" />
-    <Folder Include="App_Data\UnitOfWork\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,6 @@ namespace ProductServices.Interface
         ProductModel FindProductByID(Guid ID);
         void AddProduct(ProductModel product);
         void UpdateProduct(Guid productID, ProductModel product);
-        void DeleteProuct(Guid ID);
+        void DeleteProduct(Guid ID);
     }
 }

@@ -15,5 +15,10 @@ namespace ProductServices.Abstraction
         {
             this._ProductUnitOfWork = new ProductUnitOfWork(ConnectionStringOrName);
         }
+
+        public Service(IProductUnitOfWork unitOfWork)
+        {
+            this._ProductUnitOfWork = unitOfWork;
+        }
     }
 }

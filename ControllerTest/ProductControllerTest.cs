@@ -21,7 +21,7 @@ namespace ControllerTest
         {
             var mock = new Mock<IProductService>();
             mock.Setup(s => s.AddProduct(It.IsAny<ProductModel>())).Callback<ProductModel>(p => this._mockDatabase.Add(p));
-            mock.Setup(s => s.DeleteProuct(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockDatabase.Find(p => p.Id == id);this._mockDatabase.Remove(product); });
+            mock.Setup(s => s.DeleteProduct(It.IsAny<Guid>())).Callback<Guid>(id => { var product = this._mockDatabase.Find(p => p.Id == id);this._mockDatabase.Remove(product); });
             mock.Setup(s => s.FindProductByID(It.IsAny<Guid>())).Returns<Guid>(id=>this._mockDatabase.Find(p=>p.Id==id));
             mock.Setup(s=>s.FindProductByName(It.IsAny<string>())).Returns<string>(str=> this._mockDatabase.Find(p => p.Name == str));
             mock.Setup(s => s.GetAllProduct()).Returns(this._mockDatabase);
@@ -54,7 +54,7 @@ namespace ControllerTest
             //Act
             this._testController.Delete(this._testProduct.Id);
             //Assert
-            this._mockService.Verify(s => s.DeleteProuct(It.IsAny<Guid>()));
+            this._mockService.Verify(s => s.DeleteProduct(It.IsAny<Guid>()));
             Assert.IsFalse(this._mockDatabase.Contains(this._testProduct));
 
         }

@@ -7,6 +7,7 @@ using ProductData;
 using ProductServices.Models;
 using ProductCore.Abstraction.Interface.Mappers;
 using ProductCore.Implementation.Mappers;
+using ProductDAL.UnitOfWork;
 
 namespace ProductServices.Implementation
 {
@@ -16,7 +17,10 @@ namespace ProductServices.Implementation
         {
 
         }
+        public ProductService(IProductUnitOfWork unitOfWork):base(unitOfWork)
+        {
 
+        }
         private IEntityModelMapper<Product, ProductModel> _mapper = new EntityModelMapper<Product, ProductModel>();
 
 
@@ -27,7 +31,7 @@ namespace ProductServices.Implementation
             this._ProductUnitOfWork.Commit();
         }
 
-        public void DeleteProuct(Guid ID)
+        public void DeleteProduct(Guid ID)
         {
             this._ProductUnitOfWork.Products.RemoveByKey(ID);
             this._ProductUnitOfWork.Commit();

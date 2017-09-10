@@ -9,6 +9,7 @@ using ProductData;
 using ProductServices.Models;
 using ProductCore.Implementation.Mappers;
 using ProductCore.Abstraction.Interface.Mappers;
+using ProductDAL.UnitOfWork;
 
 namespace ProductServices.Implementation
 {
@@ -16,6 +17,11 @@ namespace ProductServices.Implementation
     {
         public ProductOptionService(string ConnectionStringOrName) : base(ConnectionStringOrName)
         {
+        }
+
+        public ProductOptionService(IProductUnitOfWork unitOfWork):base(unitOfWork)
+        {
+            
         }
         private IEntityModelMapper<ProductOption, ProductOptionModel> _mapper = new EntityModelMapper<ProductOption, ProductOptionModel>();
 

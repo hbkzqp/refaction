@@ -24,9 +24,9 @@ namespace refactor_me.Controllers
         }
         [Route("GetAll")]
         [HttpGet]
-        public IEnumerable<ProductModel> GetAll()
+        public IHttpActionResult GetAll()
         {
-            return this._productService.GetAllProduct();
+            return Ok(this._productService.GetAllProduct());
         }
 
         [Route("SearchByName")]
@@ -47,6 +47,10 @@ namespace refactor_me.Controllers
         [HttpPost]
         public void Create([FromBody]ProductModel product)
         {
+            if (ModelState.IsValid)
+            {
+                
+            }
             this._productService.AddProduct(product);
         }
 
@@ -61,7 +65,7 @@ namespace refactor_me.Controllers
         [HttpDelete]
         public void Delete(Guid id)
         {
-            this._productService.DeleteProuct(id);
+            this._productService.DeleteProduct(id);
         }
     }
 }
