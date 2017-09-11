@@ -9,24 +9,29 @@ namespace ProductDAL.UnitOfWork
 {
     public class ProductUnitOfWork : IProductUnitOfWork
     {
-        private IRepository<Product, Guid> _Products;
+        private IRepository<Product, Guid> _products;
 
-        private IRepository<ProductOption, Guid> _ProductOptions;
-        private DbContext _Context;
+        private IRepository<ProductOption, Guid> _productOptions;
+        private DbContext _context;
         public ProductUnitOfWork(string NameOrConnection)
         {
-            this._Context = new ProductContext(NameOrConnection);
-            this._Products = new Repository<Product, Guid>(this._Context);
-            this._ProductOptions = new Repository<ProductOption, Guid>(this._Context);
+            _context = new ProductContext(NameOrConnection);
+            _products = new Repository<Product, Guid>(_context);
+            _productOptions = new Repository<ProductOption, Guid>(_context);
         }
 
-        public IRepository<Product, Guid> Products => this._Products;
+        public IRepository<Product, Guid> Products => _products;
 
-        public IRepository<ProductOption, Guid> ProductOptions => this._ProductOptions;
+        public IRepository<ProductOption, Guid> ProductOptions => _productOptions;
 
         public int Commit()
         {
-            return this._Context.SaveChanges();
+            return _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

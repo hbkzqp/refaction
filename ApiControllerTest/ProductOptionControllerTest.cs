@@ -20,8 +20,8 @@ namespace ApiControllerTest
         protected override void ConfigTest()
         {
             var mock = new Mock<IProductOptionService>();
-            this._mockService = mock;
-            this._testController = new ProductOptionsController(this._mockService.Object);
+            _mockService = mock;
+            _testController = new ProductOptionsController(_mockService.Object);
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            this._testController.CreateOption(new Guid(), new ProductOptionModel());
+            _testController.CreateOption(new Guid(), new ProductOptionModel());
             //Assert
-            this._mockService.Verify(s => s.AddOption(It.IsAny<Guid>(), It.IsAny<ProductOptionModel>()));
+            _mockService.Verify(s => s.AddOption(It.IsAny<Guid>(), It.IsAny<ProductOptionModel>()));
 
 
         }
@@ -46,9 +46,9 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            this._testController.DeleteOption(new Guid());
+            _testController.DeleteOption(new Guid());
             //Assert
-            this._mockService.Verify(s => s.DeleteOption(It.IsAny<Guid>()));
+            _mockService.Verify(s => s.DeleteOption(It.IsAny<Guid>()));
 
         }
         [TestMethod]
@@ -57,10 +57,10 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            var result = this._testController.GetOption(new Guid(), new Guid());
+            var result = _testController.GetOption(new Guid(), new Guid());
 
             //Assert
-            this._mockService.Verify(s => s.GetExactOption(It.IsAny<Guid>(), It.IsAny<Guid>()));
+            _mockService.Verify(s => s.GetExactOption(It.IsAny<Guid>(), It.IsAny<Guid>()));
         }
 
 
@@ -70,10 +70,10 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            var results = this._testController.GetOptions(new Guid());
+            var results = _testController.GetOptions(new Guid());
             //Assert
 
-            this._mockService.Verify(s => s.GetOptionsByProductID(It.IsAny<Guid>()));
+            _mockService.Verify(s => s.GetOptionsByProductID(It.IsAny<Guid>()));
 
         }
         [TestMethod]
@@ -83,9 +83,9 @@ namespace ApiControllerTest
 
 
             //Act
-            this._testController.UpdateOption(new Guid(), new ProductOptionModel());
+            _testController.UpdateOption(new Guid(), new ProductOptionModel());
             //Assert
-            this._mockService.Verify(s => s.UpdateOption(It.IsAny<Guid>(), It.IsAny<ProductOptionModel>()));
+            _mockService.Verify(s => s.UpdateOption(It.IsAny<Guid>(), It.IsAny<ProductOptionModel>()));
         }
 
     }

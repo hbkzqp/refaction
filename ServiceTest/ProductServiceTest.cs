@@ -9,22 +9,30 @@ using ProductServices.Models;
 namespace ServiceTest
 {
     [TestClass]
-    public class ProductServiceTest : BaseTest
+    public class ProductServiceTest 
     {
         private ProductModel _testProductModel;
         private ProductModel _testProductModel0;
         private Product _testProduct;
         private Product _testProduct0;
         private IProductService _testService;
-
+        private TestHelper _helper;
         public ProductServiceTest()
         {
-            this.ConfigTest();
+            InitMock();
+            ConfigTest();
+        }
+        private void InitMock()
+        {
+            _helper = new TestHelper();
+            _helper.MockUnitOfWork();
+            _helper.MockProductRepository();
+            _helper.MockProductOptionRepository();
         }
         protected void ConfigTest()
         {
 
-            this._testProductModel = new ProductModel()
+            _testProductModel = new ProductModel()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName",
@@ -33,7 +41,7 @@ namespace ServiceTest
                 DeliveryPrice = 2.02m,
 
             };
-            this._testProductModel0 = new ProductModel()
+            _testProductModel0 = new ProductModel()
             {
                 Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName0",
@@ -43,7 +51,7 @@ namespace ServiceTest
 
             };
 
-            this._testProduct = new Product()
+            _testProduct = new Product()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName",
@@ -52,7 +60,7 @@ namespace ServiceTest
                 DeliveryPrice = 2.02m,
 
             };
-            this._testProduct0 = new Product()
+            _testProduct0 = new Product()
             {
                 Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName0",
@@ -61,7 +69,7 @@ namespace ServiceTest
                 DeliveryPrice = 2.2m,
 
             };
-            this._testService = new ProductService(this._mockUnitOfwork.Object);
+            _testService = new ProductService(_helper._mockUnitOfwork.Object);
         }
         /// <summary>
         ///Test For 
@@ -70,15 +78,15 @@ namespace ServiceTest
         public void TestAddProductService()
         {
             //Arrange
-            this._mockProductTable.Clear();
+            _helper._mockProductTable.Clear();
             //Act
-            this._testService.AddProduct(this._testProductModel);
+            _testService.AddProduct(_testProductModel);
             //Assert
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.Id == this._testProduct.Id));
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.DeliveryPrice == this._testProduct.DeliveryPrice));
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.Description == this._testProduct.Description));
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.Name == this._testProduct.Name));
-            Assert.IsTrue(this._mockProductTable.Exists(p => p.Price == this._testProduct.Price));
+            Assert.IsTrue(_helper._mockProductTable.Exists(p => p.Id == _testProduct.Id));
+            Assert.IsTrue(_helper._mockProductTable.Exists(p => p.DeliveryPrice == _testProduct.DeliveryPrice));
+            Assert.IsTrue(_helper._mockProductTable.Exists(p => p.Description == _testProduct.Description));
+            Assert.IsTrue(_helper._mockProductTable.Exists(p => p.Name == _testProduct.Name));
+            Assert.IsTrue(_helper._mockProductTable.Exists(p => p.Price == _testProduct.Price));
         }
 
         /// </summary>
@@ -86,83 +94,83 @@ namespace ServiceTest
         public void TestDeleteProductService()
         {
             //Arrange
-            this._mockProductTable.Clear();
-            this._mockProductTable.Add(this._testProduct);
-            this._mockProductTable.Add(this._testProduct0);
+            _helper._mockProductTable.Clear();
+            _helper._mockProductTable.Add(_testProduct);
+            _helper._mockProductTable.Add(_testProduct0);
             //Act
-            this._testService.DeleteProduct(this._testProductModel.Id);
+            _testService.DeleteProduct(_testProductModel.Id);
             //Assert
-            Assert.AreEqual(1, this._mockProductTable.Count);
-            Assert.IsFalse(this._mockProductTable.Contains(this._testProduct));
+            Assert.AreEqual(1, _helper._mockProductTable.Count);
+            Assert.IsFalse(_helper._mockProductTable.Contains(_testProduct));
         }
 
         [TestMethod]
         public void TestUpdateProductService()
         {
             //Arrange
-            this._mockProductTable.Clear();
-            this._mockProductTable.Add(this._testProduct);
-            this._testProductModel.Description = "manchester united!";
-            this._testProductModel.Name = "JOSE Mourinho!";
+            _helper._mockProductTable.Clear();
+            _helper._mockProductTable.Add(_testProduct);
+            _testProductModel.Description = "manchester united!";
+            _testProductModel.Name = "JOSE Mourinho!";
             //Act
-            this._testService.UpdateProduct(this._testProductModel.Id, this._testProductModel);
+            _testService.UpdateProduct(_testProductModel.Id, _testProductModel);
             //Assert
-            Assert.AreEqual(this._mockProductTable.Find(p => p.Id == this._testProduct.Id).Description, "manchester united!");
-            Assert.AreEqual(this._mockProductTable.Find(p => p.Id == this._testProduct.Id).Name, "JOSE Mourinho!");
+            Assert.AreEqual(_helper._mockProductTable.Find(p => p.Id == _testProduct.Id).Description, "manchester united!");
+            Assert.AreEqual(_helper._mockProductTable.Find(p => p.Id == _testProduct.Id).Name, "JOSE Mourinho!");
         }
         [TestMethod]
         public void TestFindProductByIDService()
         {
             //Arrange
-            this._mockProductTable.Clear();
-            this._mockProductTable.Add(this._testProduct);
+            _helper._mockProductTable.Clear();
+            _helper._mockProductTable.Add(_testProduct);
             //Act
-            var result = this._testService.FindProductByID(this._testProduct.Id);
+            var result = _testService.FindProductByID(_testProduct.Id);
             //Assert
-            Assert.AreEqual(result.Id, this._testProduct.Id);
-            Assert.AreEqual(result.Description, this._testProduct.Description);
-            Assert.AreEqual(result.Name, this._testProduct.Name);
-            Assert.AreEqual(result.Price, this._testProduct.Price);
-            Assert.AreEqual(result.DeliveryPrice, this._testProduct.DeliveryPrice);
+            Assert.AreEqual(result.Id, _testProduct.Id);
+            Assert.AreEqual(result.Description, _testProduct.Description);
+            Assert.AreEqual(result.Name, _testProduct.Name);
+            Assert.AreEqual(result.Price, _testProduct.Price);
+            Assert.AreEqual(result.DeliveryPrice, _testProduct.DeliveryPrice);
         }
 
         [TestMethod]
         public void TestFindProductByNameService()
         {
             //Arrange
-            this._mockProductTable.Clear();
-            this._mockProductTable.Add(this._testProduct);
+            _helper._mockProductTable.Clear();
+            _helper._mockProductTable.Add(_testProduct);
             //Act
-            var result = this._testService.FindProductByName(this._testProduct.Name);
+            var result = _testService.FindProductByName(_testProduct.Name);
             //Assert
-            Assert.AreEqual(result.Id, this._testProduct.Id);
-            Assert.AreEqual(result.Description, this._testProduct.Description);
-            Assert.AreEqual(result.Name, this._testProduct.Name);
-            Assert.AreEqual(result.Price, this._testProduct.Price);
-            Assert.AreEqual(result.DeliveryPrice, this._testProduct.DeliveryPrice);
+            Assert.AreEqual(result.Id, _testProduct.Id);
+            Assert.AreEqual(result.Description, _testProduct.Description);
+            Assert.AreEqual(result.Name, _testProduct.Name);
+            Assert.AreEqual(result.Price, _testProduct.Price);
+            Assert.AreEqual(result.DeliveryPrice, _testProduct.DeliveryPrice);
         }
 
         [TestMethod]
         public void TestGetAllProductService()
         {
             //Arrange
-            this._mockProductTable.Clear();
-            this._mockProductTable.Add(this._testProduct);
-            this._mockProductTable.Add(this._testProduct0);
+            _helper._mockProductTable.Clear();
+            _helper._mockProductTable.Add(_testProduct);
+            _helper._mockProductTable.Add(_testProduct0);
             //Act
-            var result = this._testService.GetAllProduct();
+            var result = _testService.GetAllProduct();
             //Assert
             Assert.AreEqual(2, result.Count());
-            Assert.IsTrue(result.Any(p => p.Id == this._testProduct.Id));
-            Assert.IsTrue(result.Any(p => p.DeliveryPrice == this._testProduct.DeliveryPrice));
-            Assert.IsTrue(result.Any(p => p.Description == this._testProduct.Description));
-            Assert.IsTrue(result.Any(p => p.Name == this._testProduct.Name));
-            Assert.IsTrue(result.Any(p => p.Price == this._testProduct.Price));
-            Assert.IsTrue(result.Any(p => p.Id == this._testProduct0.Id));
-            Assert.IsTrue(result.Any(p => p.DeliveryPrice == this._testProduct0.DeliveryPrice));
-            Assert.IsTrue(result.Any(p => p.Description == this._testProduct0.Description));
-            Assert.IsTrue(result.Any(p => p.Name == this._testProduct0.Name));
-            Assert.IsTrue(result.Any(p => p.Price == this._testProduct0.Price));
+            Assert.IsTrue(result.Any(p => p.Id == _testProduct.Id));
+            Assert.IsTrue(result.Any(p => p.DeliveryPrice == _testProduct.DeliveryPrice));
+            Assert.IsTrue(result.Any(p => p.Description == _testProduct.Description));
+            Assert.IsTrue(result.Any(p => p.Name == _testProduct.Name));
+            Assert.IsTrue(result.Any(p => p.Price == _testProduct.Price));
+            Assert.IsTrue(result.Any(p => p.Id == _testProduct0.Id));
+            Assert.IsTrue(result.Any(p => p.DeliveryPrice == _testProduct0.DeliveryPrice));
+            Assert.IsTrue(result.Any(p => p.Description == _testProduct0.Description));
+            Assert.IsTrue(result.Any(p => p.Name == _testProduct0.Name));
+            Assert.IsTrue(result.Any(p => p.Price == _testProduct0.Price));
         }
 
 

@@ -12,52 +12,52 @@ namespace refactor_me.Controllers
     [ModelVaild]
     public class ProductsController : ApiController
     {
-        private IProductService _productService;
+        private IProductService _productservice;
 
         public ProductsController(IProductService service)
         {
-            this._productService = service;
+            _productservice = service;
         }
         [Route("")]
         [HttpGet]
         public Products GetAll()
         {
-            return new Products() { Items = this._productService.GetAllProduct() }; ;
+            return new Products() { Items = _productservice.GetAllProduct() }; ;
         }
 
         [Route("")]
         [HttpGet]
         public ProductModel SearchByName(string name)
         {
-            return this._productService.FindProductByName(name);
+            return _productservice.FindProductByName(name);
         }
 
         [Route("{id}")]
         [HttpGet]
         public ProductModel GetProduct(Guid id)
         {
-            return this._productService.FindProductByID(id);
+            return _productservice.FindProductByID(id);
         }
 
         [Route("")]
         [HttpPost]
         public void Create([FromBody]ProductModel product)
         {
-            this._productService.AddProduct(product);
+            _productservice.AddProduct(product);
         }
 
         [Route("{id}")]
         [HttpPut]
         public void Update(Guid id, [FromBody]ProductModel product)
         {
-            this._productService.UpdateProduct(id, product);
+            _productservice.UpdateProduct(id, product);
         }
 
         [Route("{id}")]
         [HttpDelete]
         public void Delete(Guid id)
         {
-            this._productService.DeleteProduct(id);
+            _productservice.DeleteProduct(id);
         }
     }
 }

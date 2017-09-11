@@ -10,17 +10,17 @@ namespace ProductCore.Implementation.Mappers
         protected IMapper _mapper = new MapperConfiguration(cfg => cfg.CreateMap<TOrigin, TTArget>()).CreateMapper();
         public TTArget Map(TOrigin orignalObject)
         {
-            return this._mapper.Map<TTArget>(orignalObject); ;
+            return _mapper.Map<TTArget>(orignalObject); ;
         }
 
         public IEnumerable<TTArget> MapRange(IEnumerable<TOrigin> orignalObjects)
         {
-            return orignalObjects.Select(o => this._mapper.Map<TTArget>(o));
+            return orignalObjects.Select(o => _mapper.Map<TTArget>(o));
         }
 
         public void MapToExistedTarget(TOrigin orignalObject, TTArget targetObject)
         {
-            this._mapper.Map<TOrigin, TTArget>(orignalObject, targetObject);
+            _mapper.Map<TOrigin, TTArget>(orignalObject, targetObject);
         }
     }
 }

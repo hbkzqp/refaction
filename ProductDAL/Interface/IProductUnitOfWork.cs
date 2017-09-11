@@ -4,11 +4,12 @@ using System;
 
 namespace ProductDAL.UnitOfWork
 {
-    public interface IProductUnitOfWork
+    public interface IProductUnitOfWork:IDisposable
     {
         IRepository<Product, Guid> Products { get; }
         IRepository<ProductOption, Guid> ProductOptions { get; }
         int Commit();
+
     }
 
 }

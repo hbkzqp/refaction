@@ -12,44 +12,44 @@ namespace refactor_me.Controllers
     [ModelVaild]
     public class ProductOptionsController : ApiController
     {
-        private IProductOptionService _productOptionService;
+        private IProductOptionService _productOptionservice;
         public ProductOptionsController(IProductOptionService service)
         {
-            this._productOptionService = service;
+            _productOptionservice = service;
         }
         [Route("")]
         [HttpGet]
         public ProductOptions GetOptions(Guid productId)
         {
-            return new ProductOptions() { Items = this._productOptionService.GetOptionsByProductID(productId) } ;
+            return new ProductOptions() { Items = _productOptionservice.GetOptionsByProductID(productId) } ;
         }
 
         [Route("{optionId}")]
         [HttpGet]
         public ProductOptionModel GetOption(Guid productId, Guid optionId)
         {
-            return this._productOptionService.GetExactOption(productId, optionId);
+            return _productOptionservice.GetExactOption(productId, optionId);
         }
 
         [Route("")]
         [HttpPost]
         public void CreateOption(Guid productId, [FromBody]ProductOptionModel option)
         {
-            this._productOptionService.AddOption(productId, option);
+            _productOptionservice.AddOption(productId, option);
         }
 
         [Route("{optionId}")]
         [HttpPut]
         public void UpdateOption(Guid optionId, [FromBody]ProductOptionModel option)
         {
-            this._productOptionService.UpdateOption(optionId, option);
+            _productOptionservice.UpdateOption(optionId, option);
         }
 
         [Route("{optionId}")]
         [HttpDelete]
         public void DeleteOption(Guid optionId)
         {
-            this._productOptionService.DeleteOption(optionId);
+            _productOptionservice.DeleteOption(optionId);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ProductData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ProductOptions = new HashSet<ProductOption>();
+            ProductOptions = new HashSet<ProductOption>();
         }
     
         public System.Guid Id { get; set; }

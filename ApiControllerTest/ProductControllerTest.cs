@@ -23,12 +23,12 @@ namespace ApiControllerTest
         private void MockService()
         {
             var mock = new Mock<IProductService>();
-            this._mockService = mock;
+            _mockService = mock;
         }
         protected override void ConfigTest()
         {
             MockService();
-            this._testProduct = new ProductModel()
+            _testProduct = new ProductModel()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName",
@@ -37,7 +37,7 @@ namespace ApiControllerTest
                 DeliveryPrice = 2.02m,
 
             };
-            this._testProduct0 = new ProductModel()
+            _testProduct0 = new ProductModel()
             {
                 Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName0",
@@ -46,7 +46,7 @@ namespace ApiControllerTest
                 DeliveryPrice = 2.2m,
 
             };
-            this._testController = new ProductsController(this._mockService.Object);
+            _testController = new ProductsController(_mockService.Object);
         }
 
         [TestMethod]
@@ -55,9 +55,9 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            this._testController.Create(this._testProduct);
+            _testController.Create(_testProduct);
             //Assert
-            this._mockService.Verify(s => s.AddProduct(It.IsAny<ProductModel>()));
+            _mockService.Verify(s => s.AddProduct(It.IsAny<ProductModel>()));
         }
 
         [TestMethod]
@@ -65,9 +65,9 @@ namespace ApiControllerTest
         {
             //Arrange
             //Act
-            this._testController.Delete(this._testProduct.Id);
+            _testController.Delete(_testProduct.Id);
             //Assert
-            this._mockService.Verify(s => s.DeleteProduct(It.IsAny<Guid>()));
+            _mockService.Verify(s => s.DeleteProduct(It.IsAny<Guid>()));
 
         }
         [TestMethod]
@@ -75,10 +75,10 @@ namespace ApiControllerTest
         {
             //Arrange
             //Act
-            var result = this._testController.GetProduct(this._testProduct.Id);
-            var result0 = this._testController.GetProduct(this._testProduct0.Id);
+            var result = _testController.GetProduct(_testProduct.Id);
+            var result0 = _testController.GetProduct(_testProduct0.Id);
             //Assert
-            this._mockService.Verify(s => s.FindProductByID(It.IsAny<Guid>()));
+            _mockService.Verify(s => s.FindProductByID(It.IsAny<Guid>()));
         }
 
         [TestMethod]
@@ -86,20 +86,20 @@ namespace ApiControllerTest
         {
             //Arrange
             //Act
-            var result = this._testController.SearchByName(this._testProduct.Name);
-            var result0 = this._testController.SearchByName(this._testProduct0.Name);
+            var result = _testController.SearchByName(_testProduct.Name);
+            var result0 = _testController.SearchByName(_testProduct0.Name);
             //Assert
-            this._mockService.Verify(s => s.FindProductByName(It.IsAny<string>()), Times.Exactly(2));
+            _mockService.Verify(s => s.FindProductByName(It.IsAny<string>()), Times.Exactly(2));
         }
         [TestMethod]
         public void TestGetAllProduct()
         {
             //Arrange
             //Act
-            var results = this._testController.GetAll().Items as List<ProductModel>;
+            var results = _testController.GetAll().Items as List<ProductModel>;
             //Assert
 
-            this._mockService.Verify(s => s.GetAllProduct());
+            _mockService.Verify(s => s.GetAllProduct());
         }
         [TestMethod]
         public void TestUpdateProduct()
@@ -107,9 +107,9 @@ namespace ApiControllerTest
             //Arrange
 
             //Act
-            this._testController.Update(this._testProduct.Id, this._testProduct0);
+            _testController.Update(_testProduct.Id, _testProduct0);
             //Assert
-            this._mockService.Verify(s => s.UpdateProduct(It.IsAny<Guid>(), It.IsAny<ProductModel>()));
+            _mockService.Verify(s => s.UpdateProduct(It.IsAny<Guid>(), It.IsAny<ProductModel>()));
         }
 
     }

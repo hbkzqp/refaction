@@ -10,8 +10,9 @@ using ProductServices.Models;
 namespace ServiceTest
 {
     [TestClass]
-    public class ProductOptionServiceTest : BaseTest
+    public class ProductOptionServiceTest 
     {
+        private TestHelper _helper;
         private ProductOptionModel _testProductOptionModel;
         private ProductOptionModel _testProductOptionModel0;
         private ProductOption _testProductOption;
@@ -21,19 +22,27 @@ namespace ServiceTest
 
         public ProductOptionServiceTest()
         {
-            this.ConfigTest();
+            InitMock();
+            ConfigTest();
+        }
+        private void InitMock()
+        {
+            _helper = new TestHelper();
+            _helper.MockUnitOfWork();
+            _helper.MockProductRepository();
+            _helper.MockProductOptionRepository();
         }
         protected void ConfigTest()
         {
 
-            this._testProductOptionModel = new ProductOptionModel()
+            _testProductOptionModel = new ProductOptionModel()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023DDDB1A3"),
                 Name = "TestName",
                 Description = "TestDescription",
                 ProductId = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
             };
-            this._testProductOptionModel0 = new ProductOptionModel()
+            _testProductOptionModel0 = new ProductOptionModel()
             {
                 Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName0",
@@ -42,14 +51,14 @@ namespace ServiceTest
 
             };
 
-            this._testProductOption = new ProductOption()
+            _testProductOption = new ProductOption()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023DDDB1A3"),
                 Name = "TestName",
                 Description = "TestDescription",
                 ProductId = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
             };
-            this._testProductOption0 = new ProductOption()
+            _testProductOption0 = new ProductOption()
             {
                 Id = new Guid("8F2E0175-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName0",
@@ -57,7 +66,7 @@ namespace ServiceTest
                 ProductId = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
             };
 
-            this._testProduct = new Product()
+            _testProduct = new Product()
             {
                 Id = new Guid("8F2E0176-35EE-4F0A-AE55-83023D2DB1A3"),
                 Name = "TestName",
@@ -67,8 +76,8 @@ namespace ServiceTest
                 ProductOptions = new List<ProductOption>(),
             };
 
-            this._mockProductTable.Add(this._testProduct);
-            this._testService = new ProductOptionService(this._mockUnitOfwork.Object);
+            _helper._mockProductTable.Add(_testProduct);
+            _testService = new ProductOptionService(_helper._mockUnitOfwork.Object);
         }
         /// <summary>
         ///Test For 
@@ -77,16 +86,16 @@ namespace ServiceTest
         public void TestAddProductOptionService()
         {
             //Arrange
-            this._mockProductOptionsTable.Clear();
+            _helper._mockProductOptionsTable.Clear();
             //Act
-            this._testService.AddOption(this._testProduct.Id, this._testProductOptionModel);
+            _testService.AddOption(_testProduct.Id, _testProductOptionModel);
             //Assert
-            Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Id == this._testProductOption.Id));
-            Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Description == this._testProductOption.Description));
-            Assert.IsTrue(this._mockProductOptionsTable.Exists(p => p.Name == this._testProductOption.Name));
-            Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Id == this._testProductOption.Id));
-            Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Description == this._testProductOption.Description));
-            Assert.IsTrue(this._testProduct.ProductOptions.Any(p => p.Name == this._testProductOption.Name));
+            Assert.IsTrue(_helper._mockProductOptionsTable.Exists(p => p.Id == _testProductOption.Id));
+            Assert.IsTrue(_helper._mockProductOptionsTable.Exists(p => p.Description == _testProductOption.Description));
+            Assert.IsTrue(_helper._mockProductOptionsTable.Exists(p => p.Name == _testProductOption.Name));
+            Assert.IsTrue(_testProduct.ProductOptions.Any(p => p.Id == _testProductOption.Id));
+            Assert.IsTrue(_testProduct.ProductOptions.Any(p => p.Description == _testProductOption.Description));
+            Assert.IsTrue(_testProduct.ProductOptions.Any(p => p.Name == _testProductOption.Name));
         }
 
         /// </summary>
@@ -94,43 +103,43 @@ namespace ServiceTest
         public void TestDeleteProductOptionService()
         {
             //Arrange
-            this._mockProductOptionsTable.Clear();
-            this._mockProductOptionsTable.Add(this._testProductOption);
-            this._mockProductOptionsTable.Add(this._testProductOption0);
+            _helper._mockProductOptionsTable.Clear();
+            _helper._mockProductOptionsTable.Add(_testProductOption);
+            _helper._mockProductOptionsTable.Add(_testProductOption0);
             //Act
-            this._testService.DeleteOption(this._testProductOptionModel.Id);
+            _testService.DeleteOption(_testProductOptionModel.Id);
             //Assert
-            Assert.AreEqual(1, this._mockProductOptionsTable.Count);
-            Assert.IsFalse(this._mockProductOptionsTable.Contains(this._testProductOption));
+            Assert.AreEqual(1, _helper._mockProductOptionsTable.Count);
+            Assert.IsFalse(_helper._mockProductOptionsTable.Contains(_testProductOption));
         }
 
         [TestMethod]
         public void TestUpdateProductOptionService()
         {
             //Arrange
-            this._mockProductOptionsTable.Clear();
-            this._mockProductOptionsTable.Add(this._testProductOption);
-            this._testProductOptionModel.Description = "manchester united!";
-            this._testProductOptionModel.Name = "JOSE Mourinho!";
+            _helper._mockProductOptionsTable.Clear();
+            _helper._mockProductOptionsTable.Add(_testProductOption);
+            _testProductOptionModel.Description = "manchester united!";
+            _testProductOptionModel.Name = "JOSE Mourinho!";
             //Act
-            this._testService.UpdateOption(this._testProductOptionModel.Id, this._testProductOptionModel);
+            _testService.UpdateOption(_testProductOptionModel.Id, _testProductOptionModel);
             //Assert
-            Assert.AreEqual(this._mockProductOptionsTable.Find(p => p.Id == this._testProductOption.Id).Description, "manchester united!");
-            Assert.AreEqual(this._mockProductOptionsTable.Find(p => p.Id == this._testProductOption.Id).Name, "JOSE Mourinho!");
+            Assert.AreEqual(_helper._mockProductOptionsTable.Find(p => p.Id == _testProductOption.Id).Description, "manchester united!");
+            Assert.AreEqual(_helper._mockProductOptionsTable.Find(p => p.Id == _testProductOption.Id).Name, "JOSE Mourinho!");
         }
         [TestMethod]
         public void TestGetExactOptionService()
         {
             //Arrange
-            this._mockProductOptionsTable.Clear();
-            this._mockProductOptionsTable.Add(this._testProductOption);
+            _helper._mockProductOptionsTable.Clear();
+            _helper._mockProductOptionsTable.Add(_testProductOption);
             //Act
-            var result = this._testService.GetExactOption(this._testProduct.Id, this._testProductOption.Id);
+            var result = _testService.GetExactOption(_testProduct.Id, _testProductOption.Id);
             //Assert
-            Assert.AreEqual(result.Id, this._testProductOption.Id);
-            Assert.AreEqual(result.Description, this._testProductOption.Description);
-            Assert.AreEqual(result.Name, this._testProductOption.Name);
-            Assert.AreEqual(result.ProductId, this._testProduct.Id);
+            Assert.AreEqual(result.Id, _testProductOption.Id);
+            Assert.AreEqual(result.Description, _testProductOption.Description);
+            Assert.AreEqual(result.Name, _testProductOption.Name);
+            Assert.AreEqual(result.ProductId, _testProduct.Id);
         }
 
 
@@ -138,21 +147,21 @@ namespace ServiceTest
         public void TestGetOptionsByProductIDService()
         {
             //Arrange
-            this._mockProductOptionsTable.Clear();
-            this._mockProductOptionsTable.Add(this._testProductOption);
-            this._mockProductOptionsTable.Add(this._testProductOption0);
+            _helper._mockProductOptionsTable.Clear();
+            _helper._mockProductOptionsTable.Add(_testProductOption);
+            _helper._mockProductOptionsTable.Add(_testProductOption0);
             //Act
-            var result = this._testService.GetOptionsByProductID(this._testProduct.Id);
+            var result = _testService.GetOptionsByProductID(_testProduct.Id);
             //Assert
             Assert.AreEqual(2, result.Count());
-            Assert.IsTrue(result.Any(p => p.Id == this._testProductOption.Id));
-            Assert.IsTrue(result.Any(p => p.ProductId == this._testProduct.Id));
-            Assert.IsTrue(result.Any(p => p.Description == this._testProductOption.Description));
-            Assert.IsTrue(result.Any(p => p.Name == this._testProductOption.Name));
-            Assert.IsTrue(result.Any(p => p.Id == this._testProductOption0.Id));
-            Assert.IsTrue(result.Any(p => p.ProductId == this._testProduct.Id));
-            Assert.IsTrue(result.Any(p => p.Description == this._testProductOption0.Description));
-            Assert.IsTrue(result.Any(p => p.Name == this._testProductOption0.Name));
+            Assert.IsTrue(result.Any(p => p.Id == _testProductOption.Id));
+            Assert.IsTrue(result.Any(p => p.ProductId == _testProduct.Id));
+            Assert.IsTrue(result.Any(p => p.Description == _testProductOption.Description));
+            Assert.IsTrue(result.Any(p => p.Name == _testProductOption.Name));
+            Assert.IsTrue(result.Any(p => p.Id == _testProductOption0.Id));
+            Assert.IsTrue(result.Any(p => p.ProductId == _testProduct.Id));
+            Assert.IsTrue(result.Any(p => p.Description == _testProductOption0.Description));
+            Assert.IsTrue(result.Any(p => p.Name == _testProductOption0.Name));
         }
 
     }

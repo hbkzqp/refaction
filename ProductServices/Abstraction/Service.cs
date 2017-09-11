@@ -4,16 +4,21 @@ namespace ProductServices.Abstraction
 {
     public abstract class Service
     {
-        protected IProductUnitOfWork _ProductUnitOfWork;
+        protected IProductUnitOfWork _productUnitOfWork;
+        protected string ConnectionStringOrName;
 
         public Service(string ConnectionStringOrName)
         {
-            this._ProductUnitOfWork = new ProductUnitOfWork(ConnectionStringOrName);
+            this.ConnectionStringOrName = ConnectionStringOrName;
         }
 
         public Service(IProductUnitOfWork unitOfWork)
         {
-            this._ProductUnitOfWork = unitOfWork;
+            _productUnitOfWork = unitOfWork;
+        }
+        protected IProductUnitOfWork GetUnitOfWork()
+        {
+            return _productUnitOfWork != null ? _productUnitOfWork : new ProductUnitOfWork(ConnectionStringOrName);
         }
     }
 }
