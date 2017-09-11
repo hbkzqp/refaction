@@ -8,6 +8,9 @@ using refactor_me.Controllers;
 
 namespace ApiControllerTest
 {
+    /// <summary>
+    /// Test class for ProductOptionController 
+    /// </summary>
     [TestClass]
     public class ProductOptionControllerTest : BaseTest
     {
