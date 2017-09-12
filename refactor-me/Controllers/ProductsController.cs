@@ -49,9 +49,9 @@ namespace refactor_me.Controllers
 
         [Route("{id}")]
         [HttpPut]
-        public void Update(Guid id, [FromBody]ProductModel product)
+        public async Task Update(Guid id, [FromBody]ProductModel product)
         {
-             _productservice.UpdateProduct(id, product);
+            await _productservice.UpdateProduct(id, product);
         }
 
         [Route("{id}")]
