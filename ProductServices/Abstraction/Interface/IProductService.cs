@@ -1,6 +1,7 @@
 ﻿using ProductServices.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProductServices.Interface
 {
@@ -9,8 +10,8 @@ namespace ProductServices.Interface
         IEnumerable<ProductModel> GetAllProduct();
         ProductModel FindProductByName(string name);
         ProductModel FindProductByID(Guid ID);
-        void AddProduct(ProductModel product);
-        void UpdateProduct(Guid productID, ProductModel product);
-        void DeleteProduct(Guid ID);
+        Task AddProduct(ProductModel product);
+        Task UpdateProduct(Guid productID, ProductModel product);
+        Task DeleteProduct(Guid ID);
     }
 }

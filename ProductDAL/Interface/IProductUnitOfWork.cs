@@ -1,6 +1,7 @@
 ﻿using ProductDAL.Repository;
 using ProductData;
 using System;
+using System.Threading.Tasks;
 
 namespace ProductDAL.UnitOfWork
 {
@@ -8,7 +9,7 @@ namespace ProductDAL.UnitOfWork
     {
         IRepository<Product, Guid> Products { get; }
         IRepository<ProductOption, Guid> ProductOptions { get; }
-        int Commit();
+        Task<int> Commit();
 
     }
 

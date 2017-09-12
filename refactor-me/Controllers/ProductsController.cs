@@ -5,6 +5,7 @@ using ProductServices.Interface;
 using ProductServices.Models;
 using refactor_me.Filters;
 using refactor_me.ViewModel;
+using System.Threading.Tasks;
 
 namespace refactor_me.Controllers
 {
@@ -41,23 +42,23 @@ namespace refactor_me.Controllers
 
         [Route("")]
         [HttpPost]
-        public void Create([FromBody]ProductModel product)
+        public async Task Create([FromBody]ProductModel product)
         {
-            _productservice.AddProduct(product);
+             await _productservice.AddProduct(product);
         }
 
         [Route("{id}")]
         [HttpPut]
         public void Update(Guid id, [FromBody]ProductModel product)
         {
-            _productservice.UpdateProduct(id, product);
+             _productservice.UpdateProduct(id, product);
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            _productservice.DeleteProduct(id);
+            await _productservice.DeleteProduct(id);
         }
     }
 }

@@ -7,6 +7,7 @@ using ProductServices.Models;
 using ProductCore.Implementation.Mappers;
 using ProductCore.Abstraction.Interface.Mappers;
 using ProductDAL.UnitOfWork;
+using System.Threading.Tasks;
 
 namespace ProductServices.Implementation
 {
@@ -24,34 +25,34 @@ namespace ProductServices.Implementation
 
 
 
-        public void AddOption(Guid productID, ProductOptionModel option)
+        public async Task AddOption(Guid productID, ProductOptionModel option)
         {
             using (var work = GetUnitOfWork())
             {
                 var optionEntity = _mapper.MapFromModelToEntity(option);
                 work.ProductOptions.Add(optionEntity);
                 work.Products.Get(productID).ProductOptions.Add(optionEntity);
-                work.Commit();
+                await work.Commit();
             }
                
         }
 
-        public void DeleteOption(Guid optionID)
+        public async Task DeleteOption(Guid optionID)
         {
             using (var work = GetUnitOfWork())
             {
                 work.ProductOptions.RemoveByKey(optionID);
-                work.Commit();
+                await work.Commit();
             }
             
         }
-        public void UpdateOption(Guid optionID, ProductOptionModel option)
+        public async Task UpdateOption(Guid optionID, ProductOptionModel option)
         {
             using (var work = GetUnitOfWork())
             {
                 var optionToUpdate = work.ProductOptions.Get(optionID);
                 _mapper.MapFromModelToExistEntity(option, optionToUpdate);
-                work.Commit();
+                await work.Commit();
             }
         }
 

@@ -4,6 +4,7 @@ using ProductDAL.Repository;
 using ProductData;
 using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace ProductDAL.UnitOfWork
 {
@@ -24,9 +25,9 @@ namespace ProductDAL.UnitOfWork
 
         public IRepository<ProductOption, Guid> ProductOptions => _productOptions;
 
-        public int Commit()
+        public async Task<int> Commit()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

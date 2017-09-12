@@ -3,6 +3,7 @@ using ProductServices.Models;
 using refactor_me.Filters;
 using refactor_me.ViewModel;
 using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 //using refactor_me.Models;
 
@@ -33,23 +34,23 @@ namespace refactor_me.Controllers
 
         [Route("")]
         [HttpPost]
-        public void CreateOption(Guid productId, [FromBody]ProductOptionModel option)
+        public async Task CreateOption(Guid productId, [FromBody]ProductOptionModel option)
         {
-            _productOptionservice.AddOption(productId, option);
+            await _productOptionservice.AddOption(productId, option);
         }
 
         [Route("{optionId}")]
         [HttpPut]
-        public void UpdateOption(Guid optionId, [FromBody]ProductOptionModel option)
+        public async Task UpdateOption(Guid optionId, [FromBody]ProductOptionModel option)
         {
-            _productOptionservice.UpdateOption(optionId, option);
+            await _productOptionservice.UpdateOption(optionId, option);
         }
 
         [Route("{optionId}")]
         [HttpDelete]
-        public void DeleteOption(Guid optionId)
+        public async Task DeleteOption(Guid optionId)
         {
-            _productOptionservice.DeleteOption(optionId);
+            await _productOptionservice.DeleteOption(optionId);
         }
     }
 }

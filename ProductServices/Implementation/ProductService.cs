@@ -8,6 +8,7 @@ using ProductServices.Models;
 using ProductCore.Abstraction.Interface.Mappers;
 using ProductCore.Implementation.Mappers;
 using ProductDAL.UnitOfWork;
+using System.Threading.Tasks;
 
 namespace ProductServices.Implementation
 {
@@ -24,35 +25,35 @@ namespace ProductServices.Implementation
         private IEntityModelMapper<Product, ProductModel> _mapper = new EntityModelMapper<Product, ProductModel>();
 
 
-        public void AddProduct(ProductModel product)
+        public async Task AddProduct(ProductModel product)
         {
             using (var work = GetUnitOfWork())
             {
                 var ProductContext = _mapper.MapFromModelToEntity(product);
                 work.Products.Add(ProductContext);
-                work.Commit();
+                await work.Commit();
             }
             
         }
 
-        public void DeleteProduct(Guid ID)
+        public async Task DeleteProduct(Guid ID)
         {
             using (var work = GetUnitOfWork())
             {
                 work.Products.RemoveByKey(ID);
-                work.Commit();
+                await work.Commit();
             }
             
         }
 
 
-        public void UpdateProduct(Guid productID, ProductModel product)
+        public async Task UpdateProduct(Guid productID, ProductModel product)
         {
             using (var work = GetUnitOfWork())
             {
-                var productToUpdate = _productUnitOfWork.Products.Get(productID);
+                var productToUpdate = work.Products.Get(productID);
                 _mapper.MapFromModelToExistEntity(product, productToUpdate);
-                work.Commit();
+                await work.Commit();
             }
             
         }
